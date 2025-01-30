@@ -6,9 +6,16 @@ import joblib
 model = joblib.load('alzheimers_model.pk1')
 
 def get_patients_info():
+    age = st.number_input('Age', min_value=0)
     gender = st.selectbox('Gender', ['Male', 'Female'])
     ethnicity = st.selectbox('Ethnicity', ['Caucasian', 'African American', 'Asian', 'Other'])
     education_level = st.selectbox('Education Level', ['None', 'High School', "Bachelor's", 'Higher'])
+    bmi = st.number_input('BMI')
+    smoking = st.selectbox('Alcohol Consumption', ['No', 'Yes'])
+    alcohol_consumption = st.number_input('Alcohol Consumption')
+    physical_activity = st.number_input('Physical Activity')
+    diet_quality = st.number_input("Diet Quality")
+    sleep_quality = st.number_input('Sleep Quality')
     family_history = st.selectbox('Family History of Alzheimer\'s', ['No', 'Yes'])
     cardiovascular_disease = st.selectbox('Cardiovascular Disease', ['No', 'Yes'])
     diabetes = st.selectbox('Diabetes', ['No', 'Yes'])
@@ -25,6 +32,7 @@ def get_patients_info():
     gender = 0 if gender == 'Male' else 1
     ethnicity = {'Caucasian': 0, 'African American': 1, 'Asian': 2, 'Other': 3}[ethnicity]
     education_level = {'None': 0, 'High School': 1, "Bachelor's": 2, 'Higher': 3}[education_level]
+    alcohol_consumption = 0 if alcohol_consumption == 'No' else 1
     family_history = 0 if family_history == 'No' else 1
     cardiovascular_disease = 0 if cardiovascular_disease == 'No' else 1
     diabetes = 0 if diabetes == 'No' else 1
@@ -38,10 +46,10 @@ def get_patients_info():
     forgetfulness = 0 if forgetfulness == 'No' else 1
 
     # Create the input data frame
-    input_data = pd.DataFrame([[gender, ethnicity, education_level, family_history, cardiovascular_disease,
+    input_data = pd.DataFrame([[age, gender, ethnicity, education_level, bmi, smoking, alcohol_consumption, physical_activity, diet_quality, sleep_quality, family_history, cardiovascular_disease,
                                 diabetes, depression, head_injury, hypertension, confusion, disorientation,
                                 personality_changes, difficulty_completing_tasks, forgetfulness]],
-                              columns=['Gender', 'Ethnicity', 'EducationLevel', 'FamilyHistoryAlzheimers',
+                              columns=['Age', 'Gender', 'Ethnicity', 'EducationLevel', 'BMI', 'Smoking', 'AlcoholConsumption', 'PhysicalActivity', 'DietQuality', 'SleepQuality','FamilyHistoryAlzheimers',
                                        'CardiovascularDisease', 'Diabetes', 'Depression', 'HeadInjury',
                                        'Hypertension', 'Confusion', 'Disorientation', 'PersonalityChanges',
                                        'DifficultyCompletingTasks', 'Forgetfulness'])
@@ -49,6 +57,10 @@ def get_patients_info():
     # Use the model to predict
     prediction = model.predict(input_data)
     prediction_proba = model.predict_proba(input_data)[:, 1]  # Probability of Alzheimer's diagnosis (Yes)
+
+    # Store the prediction and probability in session_state
+    st.session_state.prediction = prediction[0]
+    st.session_state.prediction_proba = prediction_proba[0]
 
     if prediction == 1:
         st.write(f"Prediction: Alzheimer's diagnosis likely. Probability: {prediction_proba[0]:.2f}")
@@ -60,4 +72,4 @@ st.title("Alzheimer's Diagnosis Prediction")
 st.write("Please provide the following details about the patient:")
 
 if st.button('Get Prediction'):
-    get_patients_info
+    get_patients_info()
