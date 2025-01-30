@@ -11,7 +11,7 @@ def get_patients_info():
     ethnicity = st.selectbox('Ethnicity', ['Caucasian', 'African American', 'Asian', 'Other'])
     education_level = st.selectbox('Education Level', ['None', 'High School', "Bachelor's", 'Higher'])
     bmi = st.number_input('BMI')
-    smoking = st.selectbox('Alcohol Consumption', ['No', 'Yes'])
+    smoking = st.selectbox('Smoking', ['No', 'Yes'])
     alcohol_consumption = st.number_input('Alcohol Consumption')
     physical_activity = st.number_input('Physical Activity')
     diet_quality = st.number_input("Diet Quality")
@@ -22,6 +22,17 @@ def get_patients_info():
     depression = st.selectbox('Depression', ['No', 'Yes'])
     head_injury = st.selectbox('Head Injury', ['No', 'Yes'])
     hypertension = st.selectbox('Hypertension', ['No', 'Yes'])
+    systolicBP = st.number_input('Systolic BP')
+    diastolicBP = st.number_input('diastolic BP')
+    cholesterol_total = st.number_input('Cholesterol Total')
+    CholesterolLDL = st.number_input('Cholesterol LDL')
+    CholesterolHDL = st.number_input('Cholesterol HDL')
+    CholesterolTriglyceride  = st.number_input('Cholesterol Triglyceride')
+    mmse = st.number_input('MMSE')
+    FunctionalAssessment = st.number_input('Functional Assessment')
+    MemoryComplaints = st.selectbox('Memory Complaints', ['No', 'Yes'])
+    BehavioralProblems = st.selectbox('Behavioral Problems', ['No', 'Yes'])
+    adl = st.number_input('ADL')
     confusion = st.selectbox('Confusion', ['No', 'Yes'])
     disorientation = st.selectbox('Disorientation', ['No', 'Yes'])
     personality_changes = st.selectbox('Personality Changes', ['No', 'Yes'])
@@ -39,6 +50,8 @@ def get_patients_info():
     depression = 0 if depression == 'No' else 1
     head_injury = 0 if head_injury == 'No' else 1
     hypertension = 0 if hypertension == 'No' else 1
+    MemoryComplaints = 0 if MemoryComplaints == 'No' else 1
+    BehavioralProblems = 0 if BehavioralProblems == 'No' else 1
     confusion = 0 if confusion == 'No' else 1
     disorientation = 0 if disorientation == 'No' else 1
     personality_changes = 0 if personality_changes == 'No' else 1
@@ -47,12 +60,19 @@ def get_patients_info():
 
     # Create the input data frame
     input_data = pd.DataFrame([[age, gender, ethnicity, education_level, bmi, smoking, alcohol_consumption, physical_activity, diet_quality, sleep_quality, family_history, cardiovascular_disease,
-                                diabetes, depression, head_injury, hypertension, confusion, disorientation,
+                                diabetes, depression, head_injury, hypertension,
+                                systolicBP, diastolicBP, cholesterol_total, CholesterolLDL, CholesterolHDL, CholesterolTriglyceride, mmse, FunctionalAssessment,
+                                MemoryComplaints, BehavioralProblems, adl, confusion, disorientation,
                                 personality_changes, difficulty_completing_tasks, forgetfulness]],
-                              columns=['Age', 'Gender', 'Ethnicity', 'EducationLevel', 'BMI', 'Smoking', 'AlcoholConsumption', 'PhysicalActivity', 'DietQuality', 'SleepQuality','FamilyHistoryAlzheimers',
-                                       'CardiovascularDisease', 'Diabetes', 'Depression', 'HeadInjury',
-                                       'Hypertension', 'Confusion', 'Disorientation', 'PersonalityChanges',
-                                       'DifficultyCompletingTasks', 'Forgetfulness'])
+                                columns=['Age', 'Gender', 'Ethnicity', 'EducationLevel', 'BMI',
+                                        'Smoking', 'AlcoholConsumption', 'PhysicalActivity', 'DietQuality',
+                                        'SleepQuality', 'FamilyHistoryAlzheimers', 'CardiovascularDisease',
+                                        'Diabetes', 'Depression', 'HeadInjury', 'Hypertension', 'SystolicBP',
+                                        'DiastolicBP', 'CholesterolTotal', 'CholesterolLDL', 'CholesterolHDL',
+                                        'CholesterolTriglycerides', 'MMSE', 'FunctionalAssessment',
+                                        'MemoryComplaints', 'BehavioralProblems', 'ADL', 'Confusion',
+                                        'Disorientation', 'PersonalityChanges', 'DifficultyCompletingTasks',
+                                        'Forgetfulness', ])
 
     # Use the model to predict
     prediction = model.predict(input_data)
