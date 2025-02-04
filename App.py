@@ -5,6 +5,19 @@ import joblib
 
 model = joblib.load('alzheimers_model.pk1')
 
+train_columns = ['PatientID', 'Age', 'BMI', 'Smoking', 'AlcoholConsumption',
+       'PhysicalActivity', 'DietQuality', 'SleepQuality', 'SystolicBP',
+       'DiastolicBP', 'CholesterolTotal', 'CholesterolLDL', 'CholesterolHDL',
+       'CholesterolTriglycerides', 'MMSE', 'FunctionalAssessment',
+       'MemoryComplaints', 'BehavioralProblems', 'ADL', 'Gender_Male',
+       'Ethnicity_Asian', 'Ethnicity_Caucasian', 'Ethnicity_Other',
+       'EducationLevel_High School', 'EducationLevel_Higher',
+       'EducationLevel_None', 'FamilyHistoryAlzheimers_Yes',
+       'CardiovascularDisease_Yes', 'Diabetes_Yes', 'Depression_Yes',
+       'HeadInjury_Yes', 'Hypertension_Yes', 'Confusion_Yes',
+       'Disorientation_Yes', 'PersonalityChanges_Yes',
+       'DifficultyCompletingTasks_Yes', 'Forgetfulness_Yes']
+
 def get_patients_info():
     age = st.number_input('Age', min_value=0)
     gender = st.selectbox('Gender', ['Male', 'Female'])
@@ -66,13 +79,25 @@ def get_patients_info():
                                 personality_changes, difficulty_completing_tasks, forgetfulness]],
                                 columns=['Age', 'Gender', 'Ethnicity', 'EducationLevel', 'BMI',
                                         'Smoking', 'AlcoholConsumption', 'PhysicalActivity', 'DietQuality',
-                                        'SleepQuality', 'FamilyHistoryAlzheimers', 'CardiovascularDisease',
-                                        'Diabetes', 'Depression', 'HeadInjury', 'Hypertension', 'SystolicBP',
+                                        'SleepQuality', 'FamilyHistoryAlzheimers_Yes', 'CardiovascularDisease_Yes',
+                                        'Diabetes_Yes', 'Depression_Yes', 'HeadInjury_Yes', 'Hypertension_Yes', 'SystolicBP',
                                         'DiastolicBP', 'CholesterolTotal', 'CholesterolLDL', 'CholesterolHDL',
                                         'CholesterolTriglycerides', 'MMSE', 'FunctionalAssessment',
-                                        'MemoryComplaints', 'BehavioralProblems', 'ADL', 'Confusion',
-                                        'Disorientation', 'PersonalityChanges', 'DifficultyCompletingTasks',
-                                        'Forgetfulness', ])
+                                        'MemoryComplaints', 'BehavioralProblems', 'ADL', 'Confusion_Yes',
+                                        'Disorientation_Yes', 'PersonalityChanges_Yes', 'DifficultyCompletingTasks_Yes',
+                                        'Forgetfulness_Yes', ])
+
+    # Convert categorical features into dummy variables (just like the model was trained on)
+    input_data = pd.get_dummies(input_data, drop_first=True)
+
+    # Align columns: add missing columns if necessary, and fill with 0
+    missing_cols = set(train_columns) - set(input_data.columns)
+    for col in missing_cols:
+        input_data[col] = 0
+
+    # Ensure the order of columns is the same
+    input_data = input_data[train_columns]
+
 
     # Use the model to predict
     prediction = model.predict(input_data)
