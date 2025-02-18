@@ -42,60 +42,49 @@ def init_session_state():
             st.session_state[key] = value
 
 def get_patients_info():
-    '''
-    # Similarly, handle other fields like alcohol consumption, family history, etc.
-    # Add logic for all remaining fields as above, for example:
-    st.session_state.alcohol_consumption = st.number_input('Alcohol Consumption', value=st.session_state.alcohol_consumption)
-    st.session_state.physical_activity = st.number_input('Physical Activity', value=st.session_state.physical_activity)
-    st.session_state.diet_quality = st.number_input("Diet Quality", value=st.session_state.diet_quality)
-    st.session_state.sleep_quality = st.number_input('Sleep Quality', value=st.session_state.sleep_quality)
-    st.session_state.family_history = st.selectbox('Family History of Alzheimer\'s', ['Enter Answer', 'No', 'Yes'], index=['Enter Answer', 'No', 'Yes'].index(st.session_state.family_history))
 
-    # Repeat the same for other fields like cardiovascular disease, hypertension, etc.
-    '''
-
-
-    st.session_state.age = st.number_input('Age', min_value=0, value=st.session_state.age)
+    # age
+    st.session_state.age = st.number_input('Enter your age', min_value=0, value=st.session_state.age)
     
-    # Gender: Use "Enter Answer" as default if not set
+    # gender
     gender_options = ['Enter Answer', 'Male', 'Female']
     gender_value = st.session_state.gender if st.session_state.gender in gender_options else 'Enter Answer'
     st.session_state.gender = st.selectbox(
         'Gender', gender_options, index=gender_options.index(gender_value)
     )
 
-    # Ethnicity: Same logic for ethnicity
+    # ethnicity
     ethnicity_options = ['Enter Answer', 'Caucasian', 'African American', 'Asian', 'Other']
     ethnicity_value = st.session_state.ethnicity if st.session_state.ethnicity in ethnicity_options else 'Enter Answer'
     st.session_state.ethnicity = st.selectbox(
         'Ethnicity', ethnicity_options, index=ethnicity_options.index(ethnicity_value)
     )
 
-    # Education Level
+    # education level
     education_options = ['Enter Answer', 'None', 'High School', "Bachelor's", 'Higher']
     education_value = st.session_state.education_level if st.session_state.education_level in education_options else 'Enter Answer'
     st.session_state.education_level = st.selectbox(
-        'Education Level', education_options, index=education_options.index(education_value)
+        'Highest Education Level', education_options, index=education_options.index(education_value)
     )
 
     # BMI
-    st.session_state.bmi = st.number_input('BMI', value=st.session_state.bmi)
+    st.session_state.bmi = st.number_input('BMI (kg/m^2)', value=st.session_state.bmi)
 
-    # Smoking
+    # smoking
     smoking_options = ['Enter Answer', 'No', 'Yes']
     st.session_state.smoking = st.selectbox('Do you smoke?', smoking_options, index=smoking_options.index(st.session_state.smoking))
 
-    # Alcohol Consumption
-    st.session_state.alcohol_consumption = st.number_input('Alcohol Consumption', value=st.session_state.alcohol_consumption)
+    # alcohol consumption
+    st.session_state.alcohol_consumption = st.number_input('Weekly Alcohol Consumption', value=st.session_state.alcohol_consumption)
 
-    # Physical Activity
-    st.session_state.physical_activity = st.number_input('Physical Activity', value=st.session_state.physical_activity)
+    # physical activity
+    st.session_state.physical_activity = st.number_input('Weekly Physical Activity (hours)', value=st.session_state.physical_activity)
     
-    # Diet Quality
-    st.session_state.diet_quality = st.number_input("Diet Quality", value=st.session_state.diet_quality)
+    # diet quality
+    st.session_state.diet_quality = st.number_input("Diet Quality Score", value=st.session_state.diet_quality)
     
-    # Sleep Quality
-    st.session_state.sleep_quality = st.number_input('Sleep Quality', value=st.session_state.sleep_quality)
+    # sleep quality
+    st.session_state.sleep_quality = st.number_input('Sleep Quality Score', value=st.session_state.sleep_quality)
     
     # family history
     family_history_options = ['Enter Answer', 'No', 'Yes']
