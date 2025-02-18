@@ -68,7 +68,8 @@ def get_patients_info():
     )
 
     # BMI
-    st.session_state.bmi = st.number_input('BMI (kg/m^2)', value=st.session_state.bmi)
+    st.session_state.bmi = st.number_input('BMI (kg/m²)', value=st.session_state.bmi)
+
 
     # smoking
     smoking_options = ['Enter Answer', 'No', 'Yes']
@@ -123,7 +124,7 @@ def get_patients_info():
 
     # behavioral problems
     BehavioralProblems_options = ['Enter Answer', 'No', 'Yes']
-    st.session_state.BehavioralProblems = st.selectbox("Do you have cardiovasculardisease?", BehavioralProblems_options, index=BehavioralProblems_options.index(st.session_state.BehavioralProblems))
+    st.session_state.BehavioralProblems = st.selectbox("Do you have behavioral problems?", BehavioralProblems_options, index=BehavioralProblems_options.index(st.session_state.BehavioralProblems))
 
 
     st.session_state.adl = st.number_input('ADL', value=st.session_state.adl)
@@ -148,7 +149,7 @@ def get_patients_info():
 
     # forgetfulness
     forgetfulness_options = ['Enter Answer', 'No', 'Yes']
-    st.session_state.forgetfulness = st.selectbox("Do you often expreience forgetfulness?", forgetfulness_options, index=forgetfulness_options.index(st.session_state.forgetfulness))
+    st.session_state.forgetfulness = st.selectbox("Do you often experience forgetfulness?", forgetfulness_options, index=forgetfulness_options.index(st.session_state.forgetfulness))
 
 
 def predict():
