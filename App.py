@@ -76,16 +76,16 @@ def get_patients_info():
     st.session_state.smoking = st.selectbox('Do you smoke?', smoking_options, index=smoking_options.index(st.session_state.smoking))
 
     # alcohol consumption
-    st.session_state.alcohol_consumption = st.number_input('Weekly Alcohol Consumption', value=st.session_state.alcohol_consumption)
+    st.session_state.alcohol_consumption = st.number_input('Weekly Alcohol Consumption (ranging from 0-20 units)', value=st.session_state.alcohol_consumption)
 
     # physical activity
     st.session_state.physical_activity = st.number_input('Weekly Physical Activity (hours)', value=st.session_state.physical_activity)
     
     # diet quality
-    st.session_state.diet_quality = st.number_input("Diet Quality Score", value=st.session_state.diet_quality)
+    st.session_state.diet_quality = st.number_input("Diet Quality Score (0-10)", value=st.session_state.diet_quality)
     
     # sleep quality
-    st.session_state.sleep_quality = st.number_input('Sleep Quality Score', value=st.session_state.sleep_quality)
+    st.session_state.sleep_quality = st.number_input('Sleep Quality Score (4-10)', value=st.session_state.sleep_quality)
     
     # family history
     family_history_options = ['Enter Answer', 'No', 'Yes']
@@ -109,14 +109,14 @@ def get_patients_info():
     st.session_state.hypertension = st.selectbox("Do you have hypertension?", hypertension_options, index=hypertension_options.index(st.session_state.hypertension))
 
 
-    st.session_state.systolicBP = st.number_input('Systolic BP', value=st.session_state.systolicBP)
-    st.session_state.diastolicBP = st.number_input('Diastolic BP', value=st.session_state.diastolicBP)
-    st.session_state.cholesterol_total = st.number_input('Cholesterol Total', value=st.session_state.cholesterol_total)
-    st.session_state.CholesterolLDL = st.number_input('Cholesterol LDL', value=st.session_state.CholesterolLDL)
-    st.session_state.CholesterolHDL = st.number_input('Cholesterol HDL', value=st.session_state.CholesterolHDL)
-    st.session_state.CholesterolTriglyceride = st.number_input('Cholesterol Triglyceride', value=st.session_state.CholesterolTriglyceride)
+    st.session_state.systolicBP = st.number_input('Systolic BP (mmHg)', value=st.session_state.systolicBP)
+    st.session_state.diastolicBP = st.number_input('Diastolic BP (mmHg)', value=st.session_state.diastolicBP)
+    st.session_state.cholesterol_total = st.number_input('Cholesterol Total (mg/dL)', value=st.session_state.cholesterol_total)
+    st.session_state.CholesterolLDL = st.number_input('Cholesterol LDL (mg/dL)', value=st.session_state.CholesterolLDL)
+    st.session_state.CholesterolHDL = st.number_input('Cholesterol HDL (md/dL)', value=st.session_state.CholesterolHDL)
+    st.session_state.CholesterolTriglyceride = st.number_input('Cholesterol Triglyceride (mg/dL)', value=st.session_state.CholesterolTriglyceride)
     st.session_state.mmse = st.number_input('MMSE', value=st.session_state.mmse)
-    st.session_state.FunctionalAssessment = st.number_input('Functional Assessment', value=st.session_state.FunctionalAssessment)
+    st.session_state.FunctionalAssessment = st.number_input('Functional Assessment (range from 0-10)', value=st.session_state.FunctionalAssessment)
 
     # memory complaints
     MemoryComplaints_options = ['Enter Answer', 'No', 'Yes']
@@ -127,7 +127,7 @@ def get_patients_info():
     st.session_state.BehavioralProblems = st.selectbox("Do you have behavioral problems?", BehavioralProblems_options, index=BehavioralProblems_options.index(st.session_state.BehavioralProblems))
 
 
-    st.session_state.adl = st.number_input('ADL', value=st.session_state.adl)
+    st.session_state.adl = st.number_input('ADL (ranging from 0-10)', value=st.session_state.adl)
 
     # confusion
     confusion_options = ['Enter Answer', 'No', 'Yes']
