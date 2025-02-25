@@ -115,7 +115,7 @@ def get_patients_info():
     st.session_state.CholesterolLDL = st.number_input('Cholesterol LDL (mg/dL)', value=st.session_state.CholesterolLDL)
     st.session_state.CholesterolHDL = st.number_input('Cholesterol HDL (md/dL)', value=st.session_state.CholesterolHDL)
     st.session_state.CholesterolTriglyceride = st.number_input('Cholesterol Triglyceride (mg/dL)', value=st.session_state.CholesterolTriglyceride)
-    st.session_state.mmse = st.number_input('MMSE', value=st.session_state.mmse)
+    st.session_state.mmse = st.number_input('MMSE - Mini-Mental State Examniation score', value=st.session_state.mmse)
     st.session_state.FunctionalAssessment = st.number_input('Functional Assessment (range from 0-10)', value=st.session_state.FunctionalAssessment)
 
     # memory complaints
@@ -127,7 +127,7 @@ def get_patients_info():
     st.session_state.BehavioralProblems = st.selectbox("Do you have behavioral problems?", BehavioralProblems_options, index=BehavioralProblems_options.index(st.session_state.BehavioralProblems))
 
 
-    st.session_state.adl = st.number_input('ADL (ranging from 0-10)', value=st.session_state.adl)
+    st.session_state.adl = st.number_input('ADL - Activities of Daily Living score (ranging from 0-10)', value=st.session_state.adl)
 
     # confusion
     confusion_options = ['Enter Answer', 'No', 'Yes']
@@ -205,9 +205,11 @@ def predict():
     prediction_proba = model.predict_proba(input_data)[:, 1]  # Probability of Alzheimer's diagnosis (Yes)
 
     if prediction[0] == 1:
-        st.write(f"\nPrediction: Alzheimer's diagnosis likely\nProbability: {prediction_proba[0]:.2f}")
+        st.write("Prediction: Alzheimer's diagnosis likely")
+        st.write(f"Probability: {prediction_proba[0]:.2f}")
     else:
-        st.write(f"\nPrediction: No Alzheimer's diagnosis\nProbability: {prediction_proba[0]:.2f}")
+        st.write("Prediction: No Alzheimer's diagnosis")
+        st.write(f"Probability: {prediction_proba[0]:.2f}")
 
 # UI setup
 st.title("Alzheimer's Diagnosis Prediction")
