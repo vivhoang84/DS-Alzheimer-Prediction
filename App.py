@@ -9,19 +9,20 @@ def load_model():
 
 model = load_model()
 
+
 # Define the training columns
 train_columns = ['PatientID', 'Age', 'BMI', 'Smoking', 'AlcoholConsumption',
-       'PhysicalActivity', 'DietQuality', 'SleepQuality', 'SystolicBP',
-       'DiastolicBP', 'CholesterolTotal', 'CholesterolLDL', 'CholesterolHDL',
-       'CholesterolTriglycerides', 'MMSE', 'FunctionalAssessment',
-       'MemoryComplaints', 'BehavioralProblems', 'ADL', 'Gender_Male',
-       'Ethnicity_Asian', 'Ethnicity_Caucasian', 'Ethnicity_Other',
-       'EducationLevel_High School', 'EducationLevel_Higher',
-       'EducationLevel_None', 'FamilyHistoryAlzheimers_Yes',
-       'CardiovascularDisease_Yes', 'Diabetes_Yes', 'Depression_Yes',
-       'HeadInjury_Yes', 'Hypertension_Yes', 'Confusion_Yes',
-       'Disorientation_Yes', 'PersonalityChanges_Yes',
-       'DifficultyCompletingTasks_Yes', 'Forgetfulness_Yes']
+        'PhysicalActivity', 'DietQuality', 'SleepQuality', 'SystolicBP',
+        'DiastolicBP', 'CholesterolTotal', 'CholesterolLDL', 'CholesterolHDL',
+        'CholesterolTriglycerides', 'MMSE', 'FunctionalAssessment',
+        'MemoryComplaints', 'BehavioralProblems', 'ADL', 'Gender_Male',
+        'Ethnicity_Asian', 'Ethnicity_Caucasian', 'Ethnicity_Other',
+        'EducationLevel_High School', 'EducationLevel_Higher',
+        'EducationLevel_None', 'FamilyHistoryAlzheimers_Yes',
+        'CardiovascularDisease_Yes', 'Diabetes_Yes', 'Depression_Yes',
+        'HeadInjury_Yes', 'Hypertension_Yes', 'Confusion_Yes',
+        'Disorientation_Yes', 'PersonalityChanges_Yes',
+        'DifficultyCompletingTasks_Yes', 'Forgetfulness_Yes']
 
 # Initialize session state variables for inputs
 def init_session_state():
@@ -99,6 +100,9 @@ def get_patients_info():
     diabetes_options = ['Enter Answer', 'No', 'Yes']
     st.session_state.diabetes = st.selectbox("Do you have diabetes?", diabetes_options, index=diabetes_options.index(st.session_state.diabetes))
 
+    # depression
+    depression_options = ['Enter Answer', 'No', 'Yes']
+    st.session_state.depression = st.selectbox("Do you have depression?", depression_options, index=depression_options.index(st.session_state.depression))
 
     # head injuries
     head_injury_options = ['Enter Answer', 'No', 'Yes']
