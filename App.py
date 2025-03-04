@@ -211,7 +211,7 @@ def predict():
     if prediction_proba[0] >= 0.80:
         st.write("Prediction: Alzheimer's diagnosis very likely")
         st.write(f"Probability: {prediction_proba[0]:.2f}")
-    if prediction_proba[0] >= 0.50 & prediction_proba[0] < 0.80:
+    elif prediction_proba[0] >= 0.50 and prediction_proba[0] < 0.80:
         st.write("Prediction: Alzheimer's diagnosis likey")
         st.write(f"Probability: {prediction_proba[0]:.2f}")
     else:
