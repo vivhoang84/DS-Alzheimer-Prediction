@@ -208,11 +208,14 @@ def predict():
     prediction = model.predict(input_data)
     prediction_proba = model.predict_proba(input_data)[:, 1]  # Probability of Alzheimer's diagnosis (Yes)
 
-    if prediction[0] == 1:
-        st.write("Prediction: Alzheimer's diagnosis likely")
+    if prediction_proba[0] >= 0.80:
+        st.write("Prediction: Alzheimer's diagnosis very likely")
+        st.write(f"Probability: {prediction_proba[0]:.2f}")
+    if prediction_proba[0] >= 0.50 & prediction_proba[0] < 0.80:
+        st.write("Prediction: Alzheimer's diagnosis likey")
         st.write(f"Probability: {prediction_proba[0]:.2f}")
     else:
-        st.write("Prediction: No Alzheimer's diagnosis")
+        st.write("Prediction: Alzheimer's diagnosis not likely")
         st.write(f"Probability: {prediction_proba[0]:.2f}")
 
 # UI setup
