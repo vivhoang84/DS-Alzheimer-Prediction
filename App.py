@@ -113,12 +113,17 @@ def get_patients_info():
     st.session_state.hypertension = st.selectbox("Do you have hypertension?", hypertension_options, index=hypertension_options.index(st.session_state.hypertension))
 
 
+    # Blood Pressures
     st.session_state.systolicBP = st.number_input('Systolic BP (mmHg)', value=st.session_state.systolicBP)
     st.session_state.diastolicBP = st.number_input('Diastolic BP (mmHg)', value=st.session_state.diastolicBP)
+
+    # Cholesterols
     st.session_state.cholesterol_total = st.number_input('Cholesterol Total (mg/dL)', value=st.session_state.cholesterol_total)
     st.session_state.CholesterolLDL = st.number_input('Cholesterol LDL (mg/dL)', value=st.session_state.CholesterolLDL)
     st.session_state.CholesterolHDL = st.number_input('Cholesterol HDL (md/dL)', value=st.session_state.CholesterolHDL)
     st.session_state.CholesterolTriglyceride = st.number_input('Cholesterol Triglyceride (mg/dL)', value=st.session_state.CholesterolTriglyceride)
+
+    # MMSE
     st.session_state.mmse = st.number_input('MMSE - Mini-Mental State Examniation score', value=st.session_state.mmse)
     st.session_state.FunctionalAssessment = st.number_input('Functional Assessment (range from 0-10)', value=st.session_state.FunctionalAssessment)
 
